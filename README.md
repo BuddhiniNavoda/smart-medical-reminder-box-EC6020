@@ -60,8 +60,7 @@ The system is designed using a high-level architecture that ensures seamless com
   - Mrs. Mary Regin Kamalina
   - Mr. Nishankar Sathiyamohan
 
-###
-  - This will not be the end! Thank you!
+### This will not be the end! Thank you!
   
 
    
