@@ -51,7 +51,7 @@ The system is designed using a high-level architecture that ensures seamless com
 
 ## Block Diagram
 
-## Hardware Design
+## Prototype Design
 
 
 ## Detailed budget
