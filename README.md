@@ -30,5 +30,21 @@ This project addresses the problem of missed or incorrect medication intake by:
    - Magnetic sensor to identify box open or close.
 3. **Cloud Integration**:
    - Synchronization of schedules between mobile app and hardware using Firebase.
+
+## 📐 Architecture
+The system is designed using a high-level architecture that ensures seamless communication between all components:
+1. **Hardware Components**: 
+   - ESP32 microcontroller
+   - RTC module
+   - LED display
+   - Servo motor
+   - Magnetic sensor
+2. **Software**:
+   - Mobile app (for scheduling and alerts)
+   - Firebase (for data storage and real-time sync)
+3. **Communication Protocols**:
+   - I2C for OLED and RTC modules
+   - MQTT/HTTP for mobile app and ESP32 communication
+
    
 
