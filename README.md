@@ -8,7 +8,7 @@
 - 2021/E/136 (https://github.com/ChamidukaUdathari)
 
 ##  Introduction
-The Smart Medicine Reminder Box is an innovative embedded system designed to ensure patients take their medication on time. By combining hardware and software components, the system provides an efficient way to schedule medicine times, alert patients, making healthcare management simpler and safer.
+The Smart Medicine Reminder Box is an innovative embedded system designed to ensure patients take their medication on time. By combining hardware and software components, the system provides an efficient way to schedule medicine times, and alert patients, making healthcare management simpler and safer.
 
 ##  Purpose
 This project addresses the problem of missed or incorrect medication intake by:
@@ -48,13 +48,20 @@ The system is designed using a high-level architecture that ensures seamless com
 ## Solution Architecture
 
 ## Flow Chart
+  ![flow chart](https://raw.githubusercontent.com/BuddhiniNavoda/smart-medical-reminder-box-EC6020/d3d3ad6738bd863df6be874a156b2399b2e1f001/Block_Diagram/Block%20diagram.jpg
+)
 
 ## Block Diagram
+  ![block diagram](https://github.com/BuddhiniNavoda/smart-medical-reminder-box-EC6020/blob/main/Block_Diagram/Block%20diagram.jpg?raw=true)
+
 
 ## Prototype Design
-
+  ![Prototype Design](https://github.com/BuddhiniNavoda/smart-medical-reminder-box-EC6020/blob/main/Design/prototype%20design.jpg?raw=true
+)
 
 ## Detailed budget
+  ![budget](https://github.com/BuddhiniNavoda/smart-medical-reminder-box-EC6020/blob/main/Project_Proposal/Buget.jpg?raw=true)
+
 
 ## Advising Lecturers
   - Mrs. Mary Regin Kamalina
