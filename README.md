@@ -7,10 +7,10 @@
 - 2021/E/135 (https://github.com/JudeFernando01)
 - 2021/E/136 (https://github.com/ChamidukaUdathari)
 
-## 📖 Introduction
+##  Introduction
 The Smart Medicine Reminder Box is an innovative embedded system designed to ensure patients take their medication on time. By combining hardware and software components, the system provides an efficient way to schedule medicine times, alert patients, making healthcare management simpler and safer.
 
-## 🎯 Purpose
+##  Purpose
 This project addresses the problem of missed or incorrect medication intake by:
 - Allowing users to set, edit, or delete medicine schedules via a mobile app.
 - Providing real-time alerts and notifications to patients when it's time to take their medicine.
@@ -18,7 +18,7 @@ This project addresses the problem of missed or incorrect medication intake by:
   - Sending alerts to the mobile app if the box is opened before the scheduled time and after takeing the medicine
   - Displaying the current time and counting down to the next schedule on the LED's screen.
 
-## ⚙️ Features
+##  Features
 1. **Mobile Application**:
    - Add, delete, and update medication schedules.
    - Receive alerts for upcoming medications and when box opened or closed.
@@ -31,7 +31,7 @@ This project addresses the problem of missed or incorrect medication intake by:
 3. **Cloud Integration**:
    - Synchronization of schedules between mobile app and hardware using Firebase.
 
-## 📐 Architecture
+##  Architecture
 The system is designed using a high-level architecture that ensures seamless communication between all components:
 1. **Hardware Components**: 
    - ESP32 microcontroller
