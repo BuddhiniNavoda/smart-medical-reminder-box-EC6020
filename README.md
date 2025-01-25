@@ -45,6 +45,21 @@ The system is designed using a high-level architecture that ensures seamless com
 3. **Communication Protocols**:
    - I2C for OLED and RTC modules
    - MQTT/HTTP for mobile app and ESP32 communication
+## Solution Architecture
+
+## Flow Chart
+
+## Block Diagram
+
+## Hardware Design
+
+## PCB Design
+
+## Detailed budget
+
+
+
+## 
 
    
 
