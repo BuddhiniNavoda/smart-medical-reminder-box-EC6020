@@ -18,3 +18,17 @@ This project addresses the problem of missed or incorrect medication intake by:
   - Sending alerts to the mobile app if the box is opened before the scheduled time and after takeing the medicine
   - Displaying the current time and counting down to the next schedule on the LED's screen.
 
+## ⚙️ Features
+1. **Mobile Application**:
+   - Add, delete, and update medication schedules.
+   - Receive alerts for upcoming medications and when box opened or closed.
+
+2. **Embedded System**:
+   - Real-time clock (RTC) for precise schedule tracking.
+   - LED display for showing current time and medicine schedule.
+   - Servo motor for open and closed the box after few minutes.
+   - Magnetic sensor to identify box open or close.
+3. **Cloud Integration**:
+   - Synchronization of schedules between mobile app and hardware using Firebase.
+   
+
