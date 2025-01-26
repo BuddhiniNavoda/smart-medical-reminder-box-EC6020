@@ -56,11 +56,11 @@ The system is designed using a high-level architecture that ensures seamless com
 
 
 ## Prototype Design
-  ![Prototype Design](https://github.com/BuddhiniNavoda/smart-medical-reminder-box-EC6020/blob/main/Design/prototype%20design.jpg?raw=true
+  ![Prototype Design](https://github.com/BuddhiniNavoda/smart-medical-reminder-box-EC6020/blob/main/Design/prototype%20design_1.jpg?raw=true
 )
 
 ## Detailed budget
-  ![budget](https://github.com/BuddhiniNavoda/smart-medical-reminder-box-EC6020/blob/main/Project_Proposal/Buget.jpg?raw=true)
+  ![budget](https://github.com/BuddhiniNavoda/smart-medical-reminder-box-EC6020/blob/main/Project_Proposal/buget_1.jpg?raw=true)
 
 
 ## Advising Lecturers
