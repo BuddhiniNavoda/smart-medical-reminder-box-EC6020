@@ -58,7 +58,9 @@ The system is designed using a high-level architecture that ensures seamless com
 
 ## Prototype Design
 
-  **Design link** : [here](https://wokwi.com/projects/421039257316816897)
+
+  💡  **Design link** : [here](https://wokwi.com/projects/421039257316816897)
+
 
   
   ![Prototype Design](https://github.com/BuddhiniNavoda/smart-medical-reminder-box-EC6020/blob/main/Design/prototype%20design_1.jpg?raw=true
