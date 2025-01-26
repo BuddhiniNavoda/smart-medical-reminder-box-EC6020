@@ -8,7 +8,7 @@
 - 2021/E/136 (https://github.com/ChamidukaUdathari)
 
 ##  Introduction
-The Smart Medicine Reminder Box is an innovative embedded system designed to ensure patients take their medication on time. By combining hardware and software components, the system provides an efficient way to schedule medicine times, alert patients, making healthcare management simpler and safer.
+The Smart Medicine Reminder Box is an innovative embedded system designed to ensure patients take their medication on time. By combining hardware and software components, the system provides an efficient way to schedule medicine times, and alert patients, making healthcare management simpler and safer.
 
 ##  Purpose
 This project addresses the problem of missed or incorrect medication intake by:
@@ -33,6 +33,7 @@ This project addresses the problem of missed or incorrect medication intake by:
 
 ##  Architecture
 The system is designed using a high-level architecture that ensures seamless communication between all components:
+  ![architecture](https://raw.githubusercontent.com/BuddhiniNavoda/smart-medical-reminder-box-EC6020/195fa6d8ed3005f93e873e4d7cb8647fc721ce43/Block_Diagram/Architechture.png)
 1. **Hardware Components**: 
    - ESP32 microcontroller
    - RTC module
@@ -48,13 +49,19 @@ The system is designed using a high-level architecture that ensures seamless com
 ## Solution Architecture
 
 ## Flow Chart
+  ![flow chart](https://github.com/BuddhiniNavoda/smart-medical-reminder-box-EC6020/blob/main/Flow_Chart/flow%20chart.PNG?raw=true)
 
 ## Block Diagram
+  ![block diagram](https://github.com/BuddhiniNavoda/smart-medical-reminder-box-EC6020/blob/main/Block_Diagram/Block%20diagram_1.jpg?raw=true)
+
 
 ## Prototype Design
-
+  ![Prototype Design](https://github.com/BuddhiniNavoda/smart-medical-reminder-box-EC6020/blob/main/Design/prototype%20design.jpg?raw=true
+)
 
 ## Detailed budget
+  ![budget](https://github.com/BuddhiniNavoda/smart-medical-reminder-box-EC6020/blob/main/Project_Proposal/Buget.jpg?raw=true)
+
 
 ## Advising Lecturers
   - Mrs. Mary Regin Kamalina
