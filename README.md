@@ -33,7 +33,9 @@ This project addresses the problem of missed or incorrect medication intake by:
 
 ##  Architecture
 The system is designed using a high-level architecture that ensures seamless communication between all components:
+
   ![architecture](https://raw.githubusercontent.com/BuddhiniNavoda/smart-medical-reminder-box-EC6020/195fa6d8ed3005f93e873e4d7cb8647fc721ce43/Block_Diagram/Architechture.png)
+
 1. **Hardware Components**: 
    - ESP32 microcontroller
    - RTC module
@@ -46,8 +48,7 @@ The system is designed using a high-level architecture that ensures seamless com
 3. **Communication Protocols**:
    - I2C for OLED and RTC modules
    - MQTT/HTTP for mobile app and ESP32 communication
-## Solution Architecture
-
+     
 ## Flow Chart
   ![flow chart](https://github.com/BuddhiniNavoda/smart-medical-reminder-box-EC6020/blob/main/Flow_Chart/flow%20chart.PNG?raw=true)
 
@@ -56,6 +57,10 @@ The system is designed using a high-level architecture that ensures seamless com
 
 
 ## Prototype Design
+
+  **Design link** : [here](https://wokwi.com/projects/421039257316816897)
+
+  
   ![Prototype Design](https://github.com/BuddhiniNavoda/smart-medical-reminder-box-EC6020/blob/main/Design/prototype%20design_1.jpg?raw=true
 )
 
