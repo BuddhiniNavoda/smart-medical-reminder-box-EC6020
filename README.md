@@ -52,7 +52,7 @@ The system is designed using a high-level architecture that ensures seamless com
   ![flow chart](https://github.com/BuddhiniNavoda/smart-medical-reminder-box-EC6020/blob/main/Flow_Chart/flow%20chart.PNG?raw=true)
 
 ## Block Diagram
-  ![block diagram](https://github.com/BuddhiniNavoda/smart-medical-reminder-box-EC6020/blob/main/Block_Diagram/Block%20diagram.jpg?raw=true)
+  ![block diagram](https://github.com/BuddhiniNavoda/smart-medical-reminder-box-EC6020/blob/main/Block_Diagram/Block%20diagram_1.jpg?raw=true)
 
 
 ## Prototype Design
