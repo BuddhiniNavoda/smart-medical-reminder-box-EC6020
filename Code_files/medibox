@@ -1,0 +1,191 @@
+#include "freertos/FreeRTOS.h"  
+#include "freertos/task.h"  
+#include "driver/gpio.h"  
+#include "esp_wifi.h"  
+#include "esp_bt.h"  
+#include "esp_system.h"  
+#include "nvs_flash.h"  
+#include "esp_event.h"  
+#include "esp_log.h"  
+#include "esp_bt_device.h"  
+#include "esp_gap_bt_api.h"  
+#include "esp_spp_api.h"  
+#include "esp_sntp.h"  
+#include "driver/i2c.h"  
+#include <string.h>  
+#include <stdio.h>  
+
+// Define GPIO pins for components
+#define SERVO1_GPIO 18  
+#define SERVO2_GPIO 19  
+#define SERVO3_GPIO 21  
+#define MAG_SENSOR1_GPIO 33  
+#define MAG_SENSOR2_GPIO 32  
+#define MAG_SENSOR3_GPIO 35  
+#define BUTTON_GPIO 23  
+#define LED_DISPLAY_GPIO 22  
+
+// I2C LCD Configuration
+#define I2C_MASTER_SCL_IO 22  
+#define I2C_MASTER_SDA_IO 21  
+#define I2C_MASTER_NUM I2C_NUM_0  
+#define I2C_MASTER_FREQ_HZ 100000  
+#define LCD_ADDR 0x3F  // LCD I2C address
+
+// Bluetooth and Task Setup
+static const char *TAG = "Smart_Med_Box";  
+
+int scheduled_hours[3] = {0, 0, 0};  
+int scheduled_minutes[3] = {0, 0, 0};  
+
+// I2C initialization
+void i2c_init() {
+    i2c_config_t conf = {
+        .mode = I2C_MODE_MASTER,
+        .sda_io_num = I2C_MASTER_SDA_IO,
+        .scl_io_num = I2C_MASTER_SCL_IO,
+        .sda_pullup_en = GPIO_PULLUP_ENABLE,
+        .scl_pullup_en = GPIO_PULLUP_ENABLE,
+        .master.clk_speed = I2C_MASTER_FREQ_HZ,
+    };
+    i2c_param_config(I2C_MASTER_NUM, &conf);
+    i2c_driver_install(I2C_MASTER_NUM, I2C_MODE_MASTER, 0, 0, 0);
+}
+
+// LCD Commands
+void lcd_send_cmd(uint8_t cmd) {
+    i2c_cmd_handle_t cmd_handle = i2c_cmd_link_create();
+    i2c_master_start(cmd_handle);
+    i2c_master_write_byte(cmd_handle, (LCD_ADDR << 1) | I2C_MASTER_WRITE, true);
+    i2c_master_write_byte(cmd_handle, cmd, true);
+    i2c_master_stop(cmd_handle);
+    i2c_master_cmd_begin(I2C_MASTER_NUM, cmd_handle, pdMS_TO_TICKS(1000));
+    i2c_cmd_link_delete(cmd_handle);
+}
+
+void lcd_send_data(uint8_t data) {
+    i2c_cmd_handle_t cmd_handle = i2c_cmd_link_create();
+    i2c_master_start(cmd_handle);
+    i2c_master_write_byte(cmd_handle, (LCD_ADDR << 1) | I2C_MASTER_WRITE, true);
+    i2c_master_write_byte(cmd_handle, data, true);
+    i2c_master_stop(cmd_handle);
+    i2c_master_cmd_begin(I2C_MASTER_NUM, cmd_handle, pdMS_TO_TICKS(1000));
+    i2c_cmd_link_delete(cmd_handle);
+}
+
+void lcd_init() {
+    vTaskDelay(pdMS_TO_TICKS(50));  // Wait for LCD to power up
+    lcd_send_cmd(0x38);  // Function set: 8-bit, 2 lines, 5x8 font
+    lcd_send_cmd(0x0C);  // Display ON, Cursor OFF
+    lcd_send_cmd(0x01);  // Clear Display
+    vTaskDelay(pdMS_TO_TICKS(10));
+}
+
+void lcd_clear() {
+    lcd_send_cmd(0x01);  // Clear Display
+    vTaskDelay(pdMS_TO_TICKS(10));  
+}
+
+void lcd_put_cur(int row, int col) {
+    uint8_t cmd;
+    if (row == 0)
+        cmd = 0x80 + col;  // First row
+    else
+        cmd = 0xC0 + col;  // Second row
+    lcd_send_cmd(cmd);
+}
+
+void lcd_send_string(char *str) {
+    while (*str) {
+        lcd_send_data(*str);
+        str++;
+    }
+}
+
+// Configure GPIO pins
+void configure_gpio() {
+    gpio_config_t io_conf = {};
+    io_conf.intr_type = GPIO_INTR_DISABLE;  
+    io_conf.mode = GPIO_MODE_OUTPUT;  
+    io_conf.pin_bit_mask = (1ULL << SERVO1_GPIO) | (1ULL << SERVO2_GPIO) | (1ULL << SERVO3_GPIO) | (1ULL << LED_DISPLAY_GPIO);
+    io_conf.pull_down_en = GPIO_PULLDOWN_DISABLE;
+    io_conf.pull_up_en = GPIO_PULLUP_DISABLE;
+    gpio_config(&io_conf);
+
+    io_conf.mode = GPIO_MODE_INPUT;  
+    io_conf.pin_bit_mask = (1ULL << MAG_SENSOR1_GPIO) | (1ULL << MAG_SENSOR2_GPIO) | (1ULL << MAG_SENSOR3_GPIO) | (1ULL << BUTTON_GPIO);
+    io_conf.pull_up_en = GPIO_PULLUP_ENABLE;  
+    gpio_config(&io_conf);
+}
+
+// Move servo motor
+void move_servo(int gpio_num) {
+    gpio_set_level(gpio_num, 1);  
+    vTaskDelay(pdMS_TO_TICKS(500));  
+    gpio_set_level(gpio_num, 0);  
+}
+
+// Task to check and open doors at scheduled times
+void time_task(void *arg) {
+    while (1) {
+        time_t now;
+        struct tm timeinfo;
+        time(&now);
+        localtime_r(&now, &timeinfo);
+
+        // Display time on LCD
+        char time_str[20];
+        snprintf(time_str, sizeof(time_str), "%02d:%02d:%02d", timeinfo.tm_hour, timeinfo.tm_min, timeinfo.tm_sec);
+        lcd_put_cur(0, 0);
+        lcd_send_string("Smart Med Box");
+        lcd_put_cur(1, 0);
+        lcd_send_string(time_str);
+
+        for (int i = 0; i < 3; i++) {
+            if (timeinfo.tm_hour == scheduled_hours[i] && timeinfo.tm_min == scheduled_minutes[i]) {
+                ESP_LOGI(TAG, "Scheduled time reached, opening door %d", i + 1);
+                move_servo((i == 0) ? SERVO1_GPIO : (i == 1) ? SERVO2_GPIO : SERVO3_GPIO);
+                vTaskDelay(pdMS_TO_TICKS(60000));  
+            }
+        }
+        vTaskDelay(pdMS_TO_TICKS(1000));  
+    }
+}
+
+// Bluetooth callback function to receive and process schedule commands
+void bt_callback(esp_spp_cb_event_t event, esp_spp_cb_param_t *param) {
+    if (event == ESP_SPP_DATA_IND_EVT) {  
+        ESP_LOGI(TAG, "Received Data: %.*s", param->data_ind.len, param->data_ind.data);
+        char command[10];
+        strncpy(command, (char *)param->data_ind.data, param->data_ind.len);
+        command[param->data_ind.len] = '\0';
+
+        if (command[0] == 'T' && command[1] >= '1' && command[1] <= '3') {  
+            int door = command[1] - '1';  
+            int hour, minute;
+            if (sscanf(command + 3, "%d:%d", &hour, &minute) == 2) {  
+                scheduled_hours[door] = hour;
+                scheduled_minutes[door] = minute;
+                ESP_LOGI(TAG, "Updated schedule: Door %d opens at %02d:%02d", door + 1, hour, minute);
+            }
+        }
+    }
+}
+
+// Function to initialize Bluetooth communication
+void init_bluetooth() {
+    esp_bluedroid_init();
+    esp_bluedroid_enable();
+    esp_spp_register_callback(bt_callback);  
+    esp_spp_init(ESP_SPP_MODE_CB);  
+}
+
+// Main application entry point
+void app_main() {
+    nvs_flash_init();  
+    configure_gpio();  
+    i2c_init();  
+    lcd_init();  
+    xTaskCreate(time_task, "time_task", 2048, NULL, 5, NULL);  
+    init_bluetooth();  
+}
