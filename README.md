@@ -22,6 +22,8 @@ This project addresses the problem of missed or incorrect medication intake by:
 ##  Features
 1. **web Application**:
    - Add, delete, and update medication schedules.
+  
+   - Web Application Repo. link : [MediReminder Web Application](https://github.com/BuddhiniNavoda/MedReminder_EC6020.git)
 
 2. **Embedded System**:
    - Real-time clock (RTC) for precise schedule tracking.
@@ -58,12 +60,17 @@ The system is designed using a high-level architecture that ensures seamless com
 ## Prototype Design
 
 
-  💡  **Design link** : [here](https://wokwi.com/projects/421039257316816897)
+  💡  **Design link** : [Prototype design file ](https://wokwi.com/projects/421039257316816897)
 
 
   
   ![Prototype Design](https://github.com/BuddhiniNavoda/smart-medical-reminder-box-EC6020/blob/main/Design/prototype%20design_1.jpg?raw=true
 )
+## Final Product
+![medibox](https://github.com/BuddhiniNavoda/smart-medical-reminder-box-EC6020/blob/main/Design/medibox.jpg?raw=true
+)
+
+![medibox2](https://github.com/BuddhiniNavoda/smart-medical-reminder-box-EC6020/blob/main/Design/medibox2.jpg?raw=true)
 
 ## Detailed budget
   ![budget](https://github.com/BuddhiniNavoda/smart-medical-reminder-box-EC6020/blob/main/Project_Proposal/buget_1.jpg?raw=true)
@@ -73,7 +80,7 @@ The system is designed using a high-level architecture that ensures seamless com
   - Mrs. Mary Regin Kamalina
   - Mr. Nishankar Sathiyamohan
 
-### This will not be the end! Thank you!
+
   
 
    
