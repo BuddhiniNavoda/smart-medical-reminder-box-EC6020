@@ -21,10 +21,12 @@ This project addresses the problem of missed or incorrect medication intake by:
 
 ##  Features
 1. **web Application**:
-   ![MedReminder Web App](https://med-reminder-ec-6020.vercel.app/)
+  
    - Add, delete, and update medication schedules.
   
-   - Web Application Repo. link : [MediReminder Web Application](https://github.com/BuddhiniNavoda/MedReminder_EC6020.git)
+   - Web Application Repo. link : [MediReminder Web Application Repo.](https://github.com/BuddhiniNavoda/MedReminder_EC6020.git)
+  
+   - Web App link : [MediReminder](https://med-reminder-ec-6020.vercel.app/)
   
      ![web app](https://github.com/BuddhiniNavoda/smart-medical-reminder-box-EC6020/blob/main/Design/mediapp.png?raw=true)
 
