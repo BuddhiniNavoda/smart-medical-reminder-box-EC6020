@@ -21,16 +21,19 @@ This project addresses the problem of missed or incorrect medication intake by:
 
 ##  Features
 1. **web Application**:
+   ![MedReminder Web App](https://med-reminder-ec-6020.vercel.app/)
    - Add, delete, and update medication schedules.
   
    - Web Application Repo. link : [MediReminder Web Application](https://github.com/BuddhiniNavoda/MedReminder_EC6020.git)
+  
+     ![web app](https://github.com/BuddhiniNavoda/smart-medical-reminder-box-EC6020/blob/main/Design/mediapp.png?raw=true)
 
-2. **Embedded System**:
+3. **Embedded System**:
    - Real-time clock (RTC) for precise schedule tracking.
    - LED display for showing current time and medicine schedule.
    - Servo motor for opening and closing the box after a few minutes.
    - Magnetic sensor to identify box is open or closed.
-3. **Cloud Integration**:
+4. **Cloud Integration**:
    - Synchronization of schedules between web app and hardware using Firebase.
 
 ##  Architecture
